@@ -1,0 +1,35 @@
+﻿<%@Language="VBScript" CODEPAGE="65001"%>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Nicepay classic ASP(VBScript)</title>
+  <meta charset="UTF-8">
+  <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <h1>NICEPAY TEST</h1>
+  <form method="POST" action="./response.asp">
+    <label>card number</label><br>
+    <input type="text" name="cardNo" ><br>
+
+    <label>card expiry date MM</label><br>
+    <input type="text" name="expMonth" placeholder="MM" ><br>
+
+    <label>card expiry date YY</label><br>
+    <input type="text" name="expYear" placeholder="YY" ><br>
+
+    <label>생년월일(6)/사업자번호</label><br>
+    <input type="text" name="idNo" ><br>
+
+    <label>card password 2 digit</label><br>
+    <input type="text" name="cardPw" ><br><br>
+
+    <input type="submit" value="빌키발급">
+  </form> 
+</body>
+
+</html>
