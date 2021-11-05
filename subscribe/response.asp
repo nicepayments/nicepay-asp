@@ -7,8 +7,8 @@
 
 dim clientId, secretKey, plaintext
 
-clientId = "클라이언트 키"
-secretKey = "시크릿 키"
+clientId = "S2_af4543a0be4d49a98122e01ec2059a56"
+secretKey = "9eb85607103646da9f9c02b128f2e5ee"
 
 Set requestJSON = New aspJSON
 Set responseJSON = New aspJSON
@@ -27,7 +27,7 @@ With requestJSON.data
 End With
 
 set req = Server.CreateObject("MSXML2.ServerXMLHTTP")
-req.open "POST", "https://api.nicepay.co.kr/v1/subscribe/regist", false
+req.open "POST", "https://sandbox-api.nicepay.co.kr/v1/subscribe/regist", false
 req.setRequestHeader "Authorization", "Basic " & Base64Encode(clientId & ":" & secretKey)
 req.setRequestHeader "Content-Type", "application/json; charset=utf-8"
 req.send requestJSON.JSONoutput()
@@ -36,6 +36,8 @@ If req.status = 200 Then
   responseJSON.loadJSON(req.responseText)
   If responseJSON.data("resultCode") = "0000" Then
     '비즈니스 로직 구현
+    Billing(responseJSON.data("bid"))
+    'expire(responseJSON.data("bid"))
 
   End If
 Else
@@ -57,7 +59,7 @@ Function Billing(bid)
       .Add "useShopInterest", false
   End With
 
-  req.open "POST", "https://api.nicepay.co.kr/v1/subscribe/"+bid+"/payments", false
+  req.open "POST", "https://sandbox-api.nicepay.co.kr/v1/subscribe/"+bid+"/payments", false
   req.setRequestHeader "Authorization", "Basic " & Base64Encode(clientId & ":" & secretKey)
   req.setRequestHeader "Content-Type", "application/json; charset=utf-8"
   req.send requestJSON.JSONoutput()
@@ -84,7 +86,7 @@ Function expire(bid)
       .Add "orderId", CreateWindowsGUID()
   End With
 
-  req.open "POST", "https://api.nicepay.co.kr/v1/subscribe/"+bid+"/expire", false
+  req.open "POST", "https://sandbox-api.nicepay.co.kr/v1/subscribe/"+bid+"/expire", false
   req.setRequestHeader "Authorization", "Basic " & Base64Encode(clientId & ":" & secretKey)
   req.setRequestHeader "Content-Type", "application/json; charset=utf-8"
   req.send requestJSON.JSONoutput()

@@ -6,8 +6,8 @@
 
 dim clientId, secretKey
 
-clientId = "클라이언트 키"
-secretKey = "시크릿 키"
+clientId = "S2_af4543a0be4d49a98122e01ec2059a56"
+secretKey = "9eb85607103646da9f9c02b128f2e5ee"
 
 Set requestJSON = New aspJSON
 Set responseJSON = New aspJSON
@@ -19,7 +19,7 @@ With requestJSON.data
 End With
 
 set req = Server.CreateObject("MSXML2.ServerXMLHTTP")
-req.open "POST", "https://api.nicepay.co.kr/v1/payments/" & Request.Form("tid") & "/cancel", false
+req.open "POST", "https://sandbox-api.nicepay.co.kr/v1/payments/" & Request.Form("tid") & "/cancel", false
 req.setRequestHeader "Authorization", "Basic " & Base64Encode(clientId & ":" & secretKey)
 req.setRequestHeader "Content-Type", "application/json; charset=utf-8"
 req.send requestJSON.JSONoutput()
