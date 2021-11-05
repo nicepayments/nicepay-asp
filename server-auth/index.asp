@@ -18,7 +18,7 @@ clientId = "S2_af4543a0be4d49a98122e01ec2059a56"
   <h1>NICEPAY TEST</h1>
   <button onclick="serverAuth()">serverAuth 결제하기</button>
 
-  <script src="https://pay.nicepay.co.kr/v1/js/"></script> <!--nicepay payment-window server-auth-->
+  <script src="https://pay.nicepay.co.kr/v1/js/"></script>
 
   <script>
     function serverAuth() {
